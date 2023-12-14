@@ -38,9 +38,10 @@
 
 `npx playwright codegen` - Auto generate tests with Codegen.
 
-We suggest that you begin by typing:
+#### Run tests with tags
 
-`npx playwright test`
+We have to add "@tagname" into the test and when we run the test we have to run like this
+`npx playwright test --grep @tagname`
 
 #### Files
 * package.json

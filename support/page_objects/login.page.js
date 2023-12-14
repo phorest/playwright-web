@@ -1,9 +1,14 @@
-class loginPage{
+class loginPage {
 
-    emailinput() { return '[name="email"]' }
-    passwordInput() { return '[name="password"]' }
-    signInButton() { return '#btn-save-cd-settings' }
-
+    emailinput = '[name="email"]'
+    passwordInput = '[name="password"]';
+    signInButton = '[name="sign-in-button"]';
+    
+    async login (page, testUserEmail, password) {
+        await page.locator(this.emailinput).fill(testUserEmail);
+        await page.locator(this.passwordInput).fill(password);
+        await page.locator(this.signInButton).click();
+      }
 }
 
 module.exports = new loginPage()
