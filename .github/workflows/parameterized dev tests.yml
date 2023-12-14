@@ -36,7 +36,6 @@ jobs:
         DEV_BASE_URL: ${{ secrets.DEV_BASE_URL }}
         DEV_TOKEN_URL: ${{ secrets.DEV_TOKEN_URL }}
         TAG: ${{ github.event.inputs.tag }}
-      with:
         env: grepTags=${{ env.TAG }}
     - uses: actions/upload-artifact@v3
       if: always()
