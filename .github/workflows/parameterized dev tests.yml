@@ -29,14 +29,12 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --tag
+      run: npx playwright test --grep ${{ github.event.inputs.tag }}
       env:
         TESTUSER_USERNAME: ${{ secrets.TESTUSER_USERNAME }}
         TESTUSER_PASSWORD: ${{ secrets.TESTUSER_PASSWORD }}
         DEV_BASE_URL: ${{ secrets.DEV_BASE_URL }}
         DEV_TOKEN_URL: ${{ secrets.DEV_TOKEN_URL }}
-        TAG: ${{ github.event.inputs.tag }}
-        env: grepTags=${{ env.TAG }}
     - uses: actions/upload-artifact@v3
       if: always()
       with:
