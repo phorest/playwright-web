@@ -1,8 +1,5 @@
 name: Playwright Tests - DEV
 on:
-  push:
-  # It will triggered when there is a push on the following branches:
-    branches: [ main, master ]
   # It will triggered when there is a pull request applied on the following branches:
   pull_request:
     branches: [ main, master ]
