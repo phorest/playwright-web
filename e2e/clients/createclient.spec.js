@@ -101,4 +101,6 @@ test('Create a new client @client', async ({ page }) => {
     await clientsPage.fillZipPostcode(page, testClient.ZIP_POSTCODE);
     await clientsPage.pickCountry(page, testClient.COUNTRY);
 
+    //await clientsPage.clickOnSaveButton(page);
+
 });

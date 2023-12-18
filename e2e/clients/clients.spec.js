@@ -14,7 +14,7 @@ test.beforeEach("Authentication", async ({ page, request }) => {
 
 test('Clients screen is available @smoke', async ({ page }) => {
 
-    await clientsPage.navigatToClientsScreen(page);
+    await clientsPage.navigateToClientsScreen(page);
     await expect(page).toHaveTitle(pageTitle.CLIENTS);
     await expect(page.url()).toContain(pageURL.CLIENTS);
 
