@@ -16,7 +16,7 @@ class generalCommands {
         let tokenValue = responseJSON.access_token;
 
         await page.evaluate(tokenValue => localStorage.setItem('access-token', tokenValue), tokenValue)
-        
+
         await page.goto(process.env.DEV_BASE_URL);
         await this.checkRevisionKey(page);
     }
@@ -38,6 +38,38 @@ class generalCommands {
         } else {
             await page.goto(process.env.DEV_BASE_URL + '/?revision=' + revisionKey);
         }
+    }
+
+    async scrollIntoViewIfNeeded(page, locatorID){
+        await page.locator(locatorID).scrollIntoViewIfNeeded();
+    }
+
+    async clickOnAButtonByName(page, locatorID) {
+        await page.locator(locatorID).click();
+    }
+
+    async fillInputByLabel(page, locatorID, input) {
+        await page.getByLabel(locatorID).click();
+        await page.getByLabel(locatorID).fill(input);
+    }
+
+    async fillInputByPlaceholder(page, locatorID, input) {
+        await page.getByPlaceholder(locatorID).click();
+        await page.getByPlaceholder(locatorID).fill(input);
+    }
+    async fillInputByLabelExactTrue(page, locatorID, input) {
+        await page.getByLabel(locatorID, {exact: true}).click();
+        await page.getByLabel(locatorID, {exact: true}).fill(input);
+    }
+
+    async fillInputById(page, locatorID, input) {
+        await page.locator(locatorID).click();
+        await page.locator(locatorID).fill(input);
+    }
+
+    async pickFromDropdown(page, locatorID, option) {
+        await page.getByLabel(locatorID).click();
+        await page.getByText(option, { exact: true }).click();
     }
 
 }
