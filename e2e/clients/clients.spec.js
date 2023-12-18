@@ -1,5 +1,5 @@
 import { pageTitle, pageURL } from '../../support/data/page'
-import clientsPage from "../../support/page_objects/clients/clients.page"
+import clientsPage from "../../support/page_objects/clients/createClient/createClients.page"
 import generalCommands from "../../support/generalCommands/general.commands"
 
 // @ts-check

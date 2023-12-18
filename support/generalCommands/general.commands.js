@@ -1,5 +1,6 @@
 import featureflagPage from "../../support/page_objects/featureflag/featureflag.page"
 import appointmentsPage from "../../support/page_objects/appointments/appointments.page"
+import {expect} from "@playwright/test";
 
 class generalCommands {
     // Login
@@ -12,6 +13,8 @@ class generalCommands {
                 "password": process.env.TESTUSER_PASSWORD
             }
         });
+        await expect(response.ok()).toBeTruthy();
+        await expect(response.status()).toBe(200);
         let responseJSON = await response.json();
         let tokenValue = responseJSON.access_token;
 

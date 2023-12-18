@@ -1,5 +1,6 @@
 import clientsPage from "../../support/page_objects/clients/clients.page"
 import generalCommands from "../../support/generalCommands/general.commands"
+import graphQLCommands from "../../support/generalCommands/graphQL.commands";
 
 // @ts-check
 const { test } = require('@playwright/test');
@@ -10,8 +11,8 @@ const testClient = {
     FIRST_NAME: 'Istvan',
     LAST_NAME: 'Gercsak',
     GENDER: 'Male',
-    PHONE_NUMBER: '1231234567',
-    LANDLINE: '1231234567',
+    PHONE_NUMBER: '0891234567',
+    LANDLINE: '0891234567',
     EMAIL: 'test@test.com',
     BIRTH_YEAR: '1988',
     BIRTH_MONTH: 'December',
@@ -41,7 +42,7 @@ test.beforeEach("Authentication", async ({ page, request }) => {
     await generalCommands.turnOnFeatureFlag(page, devFeatureFlags);
 })
 
-test('Create a new client @client', async ({ page }) => {
+test('Create a new client and delete it. @client', async ({ page }) => {
 
     await clientsPage.navigateToClientsScreen(page);
     await clientsPage.clickOnAddClientButton(page);
@@ -101,6 +102,25 @@ test('Create a new client @client', async ({ page }) => {
     await clientsPage.fillZipPostcode(page, testClient.ZIP_POSTCODE);
     await clientsPage.pickCountry(page, testClient.COUNTRY);
 
-    //await clientsPage.clickOnSaveButton(page);
+    await clientsPage.clickOnSaveButton(page);
+
+});
+
+// test.afterEach("Delete client", async ({ page }) => {
+//     await page.goto(process.env.DEV_BASE_URL);
+//     await clientsPage.navigateToClientsScreen(page);
+//
+//     await page.getByPlaceholder("First Name").click();
+//     await page.getByPlaceholder("First Name").fill(testClient.FIRST_NAME);
+//     await page.getByRole('cell', { name: 'Istvan' }).click();
+//     await page.getByRole('button', { name: 'Client actions' }).click();
+//     await page.getByRole('menuitem', { name: 'Forget' }).click();
+//     await page.getByRole('button', { name: 'Forget' }).click();
+// })
+
+test.afterEach('Delete a client with GraphQL @smoke', async ({ page, request }) => {
+
+    const clientId = await graphQLCommands.getClientId(page, request, testClient.FIRST_NAME);
+    await graphQLCommands.deleteClient(page, request, clientId);
 
 });
