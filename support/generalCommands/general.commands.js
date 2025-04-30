@@ -1,6 +1,8 @@
 import featureflagPage from "../../support/page_objects/featureflag/featureflag.page"
 import appointmentsPage from "../../support/page_objects/appointments/appointments.page"
 import {expect} from "@playwright/test";
+import graphQLCommands from "./graphQL.commands";
+import {testClient} from "../data/testData";
 
 class generalCommands {
     // Login
@@ -75,6 +77,9 @@ class generalCommands {
         await page.getByText(option, { exact: true }).click();
     }
 
+    async getClientID(page, request, clientFirstName){
+        return await graphQLCommands.getClientId(page, request, clientFirstName);
+    }
 }
 
 module.exports = new generalCommands()

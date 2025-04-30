@@ -3,7 +3,6 @@ import generalCommands from "../../../generalCommands/general.commands"
 
 class createClientsPage {
 
-    clientsMenuId = "#main-nav-clients-link";
     addClientButton = '[name="add-client"]';
     notesInput = '#notes';
     marketingPermissionCheckboxByEmail = '[name="marketingEmailOptin"]';
@@ -32,11 +31,6 @@ class createClientsPage {
     countyStateRegion = 'County / State / Region';
     zipPostcode = 'Zip / Postcode';
     saveButton = '[name="actions-bar-save-changes-button"]'
-
-    async navigateToClientsScreen(page) {
-        console.log("Navigate to Client screen")
-        await page.locator(this.clientsMenuId).click();
-    }
 
     async clickOnAddClientButton(page) {
         console.log("Click on add client button")

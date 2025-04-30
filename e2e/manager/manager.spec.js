@@ -12,7 +12,7 @@ test.beforeEach("Authentication", async ({ page, request }) => {
     await generalCommands.turnOnFeatureFlag(page, devFeatureFlags);
 })
 
-test('Manager screen is available @smoke', async ({ page }) => {
+test('Manager screen is available @smoke @ui', async ({ page }) => {
 
     await managerPage.navigatToManagerScreen(page);
     await expect(page).toHaveTitle(pageTitle.MANAGER);

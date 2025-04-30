@@ -12,7 +12,7 @@ test.beforeEach("Authentication", async ({ page, request }) => {
     await generalCommands.turnOnFeatureFlag(page, devFeatureFlags);
 })
 
-test('Purchase screen is available @smoke', async ({ page }) => {
+test('Purchase screen is available @smoke @ui', async ({ page }) => {
 
     await purchasePage.navigatToPurchaseScreen(page);
     await expect(page).toHaveTitle(pageTitle.PURCHASE);

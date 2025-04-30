@@ -11,7 +11,7 @@ test.beforeEach("Authentication", async ({ page }) => {
   await expect(page.url()).toContain(pageURL.LOGIN);
 })
 
-test('Login with user interaction and I can not log out by clicking on the back button @login', async ({ page }) => {
+test('Login with user interaction and I can not log out by clicking on the back button @login @ui', async ({ page }) => {
   await loginPage.login(page, process.env.TESTUSER_USERNAME, process.env.TESTUSER_PASSWORD);
   await expect(page).toHaveTitle(pageTitle.APPOINTMENTS);
   await expect(page.url()).toContain(pageURL.APPOINTMENTS);
@@ -20,7 +20,7 @@ test('Login with user interaction and I can not log out by clicking on the back 
   await expect(page.url()).toContain(pageURL.APPOINTMENTS);
 });
 
-test('As a user, I should be able to successfully logout @login', async ({ page, request }) => {
+test('As a user, I should be able to successfully logout @login @ui', async ({ page, request }) => {
   await generalCommands.loginAPI(page, request);
   await page.getByRole('button', { name: 'Sign out' }).click();
   await expect(page).toHaveTitle(pageTitle.LOGIN);
